@@ -30,7 +30,7 @@ defmodule Slack.Rtm do
 
   defp handle_response(error), do: error
 
-  defp handle_close(reason, slack, state) do
+  def handle_close(reason, slack, state) do
     IO.puts "<---------------------------------->"
     IO.puts "-> The connection has been closed :("
     IO.inspect reason
