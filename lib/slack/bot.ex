@@ -99,7 +99,11 @@ defmodule Slack.Bot do
 
   @doc false
   def ondisconnect(reason, %{slack: slack, process_state: process_state, bot_handler: bot_handler} = state) do
+    IO.puts "<---------------------->"
     IO.puts "-> We have a disconnect!"
+    IO.inspect reason
+    IO.inspect state
+    IO.puts "<---------------------->"
 
     try do
       bot_handler.handle_close(reason, slack, process_state)
