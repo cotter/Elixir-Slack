@@ -60,6 +60,7 @@ defmodule Slack.Bot do
       {:error, %HTTPoison.Error{reason: :nxdomain}} ->
         IO.puts "-> RTM nxdomain"
         {:error, "Could not connect to the Slack RTM API"}
+
       {:error, %JSX.DecodeError{string: "You are sending too many requests. Please relax."}} ->
         IO.puts "-> RTM too_many_requests"
         {:error, "Sent too many connection requests at once to the Slack RTM API."}
@@ -98,6 +99,8 @@ defmodule Slack.Bot do
 
   @doc false
   def ondisconnect(reason, %{slack: slack, process_state: process_state, bot_handler: bot_handler} = state) do
+    IO.puts "-> We have a disconnect!"
+
     try do
       bot_handler.handle_close(reason, slack, process_state)
       {:close, reason, state}
