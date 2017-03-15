@@ -10,7 +10,7 @@ defmodule Slack.Rtm do
   @moduledoc false
 
   def start(token) do
-    IO.puts "Starting..."
+    IO.puts "-> Starting...The token is #{token}"
 
     slack_url(token)
     |> HTTPoison.get()
@@ -18,7 +18,7 @@ defmodule Slack.Rtm do
   end
 
   defp handle_response({:ok, %HTTPoison.Response{body: body}}) do
-    IO.puts "We are in the OK handler"
+    IO.puts "-> We are in the OK handler"
 
     case JSX.decode(body, [{:labels, :atom}]) do
       {:ok, %{ok: true} = json} -> {:ok, json}
@@ -29,7 +29,7 @@ defmodule Slack.Rtm do
   end
 
   defp handle_response(error) do
-    IO.puts "We are in the error handler"
+    IO.puts "-> We are in the error handler"
 
     error
   end

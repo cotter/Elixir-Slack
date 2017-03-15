@@ -20,6 +20,14 @@ defmodule Slack.Bot do
   Slack.Bot.start_link(MyBot, [1,2,3], "abc-123")
   """
   def start_link(bot_handler, initial_state, token, options \\ %{}) do
+    IO.puts "<--------------------->"
+    IO.puts "-> We are in start_link"
+    IO.inspect bot_handler
+    IO.inspect initial_state
+    IO.inspect token
+    IO.inspect options
+    IO.puts "<--------------------->"
+
     options = Map.merge(%{
       client: :websocket_client,
       keepalive: 10_000,
