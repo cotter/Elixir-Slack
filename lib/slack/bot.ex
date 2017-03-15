@@ -36,6 +36,8 @@ defmodule Slack.Bot do
 
     case Slack.Rtm.start(token) do
       {:ok, rtm} ->
+        IO.puts "-> RTM started OK"
+
         state = %{
           bot_handler: bot_handler,
           rtm: rtm,
@@ -53,12 +55,17 @@ defmodule Slack.Bot do
 
         {:ok, pid}
       {:error, %HTTPoison.Error{reason: :connect_timeout}} ->
+        IO.puts "-> RTM connect_timeout"
         {:error, "Timed out while connecting to the Slack RTM API"}
       {:error, %HTTPoison.Error{reason: :nxdomain}} ->
+        IO.puts "-> RTM nxdomain"
         {:error, "Could not connect to the Slack RTM API"}
       {:error, %JSX.DecodeError{string: "You are sending too many requests. Please relax."}} ->
+        IO.puts "-> RTM too_many_requests"
         {:error, "Sent too many connection requests at once to the Slack RTM API."}
       {:error, error} ->
+        IO.puts "-> RTM some other error has occurred"
+        IO.inspect error
         {:error, error}
     end
   end
