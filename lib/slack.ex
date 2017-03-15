@@ -81,7 +81,7 @@ defmodule Slack do
 
       def handle_connect(_slack, state), do: {:ok, state}
       def handle_event(_message, _slack, state), do: {:ok, state}
-      def handle_close(_reason, _slack, state), do: :close
+      # def handle_close(_reason, _slack, state), do: :close
       def handle_info(_message, _slack, state), do: {:ok, state}
 
       defoverridable [handle_connect: 2, handle_event: 3, handle_close: 3, handle_info: 3]
