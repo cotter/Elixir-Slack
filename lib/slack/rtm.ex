@@ -30,15 +30,6 @@ defmodule Slack.Rtm do
 
   defp handle_response(error), do: error
 
-  def handle_close(reason, slack, state) do
-    IO.puts "<---------------------------------->"
-    IO.puts "-> The connection has been closed :("
-    IO.inspect reason
-    IO.inspect slack
-    IO.inspect state
-    IO.puts "<---------------------------------->"
-  end
-
   defp slack_url(token) do
     Application.get_env(:slack, :url, "https://slack.com") <> "/api/rtm.start?token=#{token}"
   end
