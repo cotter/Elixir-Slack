@@ -102,6 +102,7 @@ defmodule Slack.Bot do
     IO.puts "<---------------------->"
     IO.puts "-> We have a disconnect!"
     IO.inspect reason
+    IO.inspect bot_handler
     IO.inspect Map.keys(slack)
     IO.puts "<---------------------->"
 
